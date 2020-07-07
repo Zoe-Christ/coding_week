@@ -12,3 +12,10 @@ def main():
     plt.show()
 
 main()
+
+
+# Das ist der erste Kommentar
+spam = 1                    # und dies ist der zweite Kommentar
+                            # ... und jetzt ein dritter!
+string = "# Dies ist kein Kommentar."
+
