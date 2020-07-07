@@ -1,14 +1,19 @@
 
-print("Hello, Visual Studio")
+import face_recognition
 
+image = face_recognition.load_image_file("PersonalsausweisMieterVorne.jpeg")
+face_locations = face_recognition.face_locations(image)
 
-from math import radians
-import numpy as np     # installed with matplotlib
-import matplotlib.pyplot as plt
+# Flask route decorators map / and /hello to the hello function.
+# To add other resources, create functions that generate the page contents
+# and add decorators to define the appropriate resource locators for them.
 
-def main():
-    x = np.arange(0, radians(1800), radians(12))
-    plt.plot(x, np.cos(x), 'b')
-    plt.show()
+@app.route('/')
+@app.route('/hello')
+def hello():
+    # Render the page
+    return "Hello Python!"
 
-main()
+if __name__ == '__main__':
+    # Run the app server on localhost:4449
+    app.run('localhost', 4449)
