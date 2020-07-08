@@ -19,18 +19,13 @@ SayHello()
 x=power(3,2)
 print("power(3,2) : ", x)
 
-from tkinter import *
-window=Tk()
-# add widgets here
-
-window.title('Hello Python')
-window.geometry("300x200+10+20")
-window.mainloop()
 
 from tkinter import *
 window=Tk()
-btn=Button(window, text="This is Button widget", fg='blue')
+lbl=Label(window, text="This is the Coding Week Window", fg='red', font=("Helvetica", 10))
+lbl.place(x=60, y=50)
+btn=Button(window, text="Press the Button", fg='blue')
 btn.place(x=80, y=100)
-window.title('Hello Python')
+window.title('Coding Week')
 window.geometry("300x200+10+10")
 window.mainloop()
