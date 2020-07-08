@@ -22,6 +22,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="coding_week.py" />
+    <Compile Include="faceTest.py" />
+    <Compile Include="module1.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="test.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
