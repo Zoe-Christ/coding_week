@@ -27,7 +27,19 @@
     <Compile Include="module1.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="MyPackage\functions.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MyPackage\greet.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MyPackage\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="test.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MyPackage\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

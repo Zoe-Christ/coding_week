@@ -13,3 +13,8 @@ def square(x):
     return (x*x)
 
 print("Quadrat: ", square(4))
+
+from MyPackage import power, average, SayHello
+SayHello()
+x=power(3,2)
+print("power(3,2) : ", x)
