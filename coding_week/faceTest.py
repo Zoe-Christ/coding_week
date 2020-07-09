@@ -1,23 +1,30 @@
-from PIL import Image
 import face_recognition
 
-# Load the jpg file into a numpy array
-image = face_recognition.load_image_file("jason-derulo.jpg")
+# Load the jpg files into numpy arrays
+derulo_image = face_recognition.load_image_file("jason-derulo.jpg")
+obama_image = face_recognition.load_image_file("michelle-obama.jpg")
+unknown_image = face_recognition.load_image_file("michelle-obama_2.jpg")
 
-# Find all the faces in the image using the default HOG-based model.
-# This method is fairly accurate, but not as accurate as the CNN model and not GPU accelerated.
-# See also: find_faces_in_picture_cnn.py
-face_locations = face_recognition.face_locations(image)
+# Get the face encodings for each face in each image file
+# Since there could be more than one face in each image, it returns a list of encodings.
+# But since I know each image only has one face, I only care about the first encoding in each image, so I grab index 0.
+try:
+    derulo_face_encoding = face_recognition.face_encodings(derulo_image)[0]
+    obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
+    unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
+except IndexError:
+    print("I wasn't able to locate any faces in at least one of the images. Check the image files. Aborting...")
+    quit()
 
-print("I found {} face(s) in this photograph.".format(len(face_locations)))
+known_faces = [
+    derulo_face_encoding,
+    obama_face_encoding
+]
 
-for face_location in face_locations:
+# results is an array of True/False telling if the unknown face matched anyone in the known_faces array
+results = face_recognition.compare_faces(known_faces, unknown_face_encoding)
 
-    # Print the location of each face in this image
-    top, right, bottom, left = face_location
-    print("A face is located at pixel location Top: {}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom, right))
-
-    # You can access the actual face itself like this:
-    face_image = image[top:bottom, left:right]
-    pil_image = Image.fromarray(face_image)
-    pil_image.show()
+print("Is the unknown face a picture of Jason Derulo? {}".format(results[0]))
+print("Is the unknown face a picture of Michelle Obama? {}".format(results[1]))
+print("Is the unknown face a new person that we've never seen before? {}".format(not True in results))
+print(derulo_face_encoding)
