@@ -53,7 +53,14 @@ finally:
 
 # Datensatz einfügen
 
-def insert(id, byteArr):
+def insert(id, fileName):
+    import io
+    from io import BytesIO
+    from PIL import Image
+    with Image.open(fileName) as img:
+        byteIO = io.BytesIO()
+        img.save(byteIO, format='PNG')
+    byteArr = byteIO.getvalue()
     db=sqlite3.connect('SQLite_Python.db')
     qry="""insert into FaceImages (foto_id, byteArr) values(?, ?);"""
     try:
@@ -72,6 +79,9 @@ def insert(id, byteArr):
 # Datensätze ausgeben 
 
 def ausgeben():
+    import io
+    from io import BytesIO
+    from PIL import Image
     db=sqlite3.connect('SQLite_Python.db')
     sql="SELECT * from FaceImages;"
     cur=db.cursor()
@@ -80,7 +90,9 @@ def ausgeben():
         record=cur.fetchone()
         if record==None:
             break
-        print (record)
+        #print (record)
+        img = Image.open(io.BytesIO(record[1]))
+        img.show(record)
     db.close()
     return
   
