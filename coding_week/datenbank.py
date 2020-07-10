@@ -1,4 +1,5 @@
 import sqlite3
+import face_recognition
 
 # Datenbank erstellen
 
@@ -86,15 +87,19 @@ def ausgeben():
     sql="SELECT * from FaceImages;"
     cur=db.cursor()
     cur.execute(sql)
+    known_faces = []
     while True:
         record=cur.fetchone()
         if record==None:
             break
         #print (record)
-        img = Image.open(io.BytesIO(record[1]))
-        img.show(record)
+        #image.open(io.BytesIO(record[1]), mode = 'r')
+        img2 = face_recognition.load_image_file(io.BytesIO(record[1]))
+        uf = face_recognition.face_encodings(img2)[0]
+        known_faces.append(uf)
+        #img.show(record)
     db.close()
-    return
+    return known_faces
   
 
 # Datensatz löschen

@@ -29,6 +29,9 @@
     <Compile Include="datenbank.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FaceCompare.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="faceTest.py" />
     <Compile Include="module1.py">
       <SubType>Code</SubType>
