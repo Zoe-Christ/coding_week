@@ -92,14 +92,30 @@ def ausgeben():
         record=cur.fetchone()
         if record==None:
             break
-        #print (record)
-        #image.open(io.BytesIO(record[1]), mode = 'r')
         img2 = face_recognition.load_image_file(io.BytesIO(record[1]))
         uf = face_recognition.face_encodings(img2)[0]
         known_faces.append(uf)
-        #img.show(record)
     db.close()
     return known_faces
+
+#Max id ausgeben
+def givemaxID():
+    db=sqlite3.connect('SQLite_Python.db')
+    qry="""SELECT MAX(foto_id) FROM FaceImages;"""
+    maxID=1
+    try:
+        cur=db.cursor()
+        cur.execute(qry)
+        record = cur.fetchone()
+        #db.commit()
+        
+        maxID = record[0]
+        #print(maxID)
+    except:
+        print("error in operation")
+    db.close()
+    return maxID
+
   
 
 # Datensatz löschen
@@ -107,7 +123,7 @@ def ausgeben():
 
 def delete(id):
     db=sqlite3.connect('SQLite_Python.db')
-    qry="""DELETE from FaceImages where face_id= ?;"""
+    qry="""DELETE from FaceImages where foto_id= ?;"""
     try:
         cur=db.cursor()
         
