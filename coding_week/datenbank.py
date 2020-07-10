@@ -53,12 +53,12 @@ finally:
 
 # Datensatz einfügen
 
-def insert(id, name, vorname):
+def insert(id, byteArr):
     db=sqlite3.connect('SQLite_Python.db')
-    qry="""insert into testTable (id, name, vorname) values(?,?,?);"""
+    qry="""insert into FaceImages (foto_id, byteArr) values(?, ?);"""
     try:
         cur=db.cursor()
-        recordTuple = (id, name, vorname)
+        recordTuple = (id, byteArr)
         cur.execute(qry, recordTuple)
         db.commit()
         print ("one record added successfully")
@@ -73,7 +73,7 @@ def insert(id, name, vorname):
 
 def ausgeben():
     db=sqlite3.connect('SQLite_Python.db')
-    sql="SELECT * from testTable;"
+    sql="SELECT * from FaceImages;"
     cur=db.cursor()
     cur.execute(sql)
     while True:
@@ -90,7 +90,7 @@ def ausgeben():
 
 def delete(id):
     db=sqlite3.connect('SQLite_Python.db')
-    qry="""DELETE from testTable where id= ?;"""
+    qry="""DELETE from FaceImages where face_id= ?;"""
     try:
         cur=db.cursor()
         
@@ -103,3 +103,26 @@ def delete(id):
     db.close()
     return
 
+"""
+import sqlite3
+try:
+    sqliteConnection = sqlite3.connect('SQLite_Python.db')
+    sqlite_create_table_query = '''CREATE TABLE FaceImages (
+                                    foto_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                    byteArr BLOB);'''
+
+    cursor = sqliteConnection.cursor()
+    print("Successfully Connected to SQLite")
+    cursor.execute(sqlite_create_table_query)
+    sqliteConnection.commit()
+    print("SQLite table created")
+
+    cursor.close()
+
+except sqlite3.Error as error:
+    print("Error while creating a sqlite table", error)
+finally:
+    if (sqliteConnection):
+        sqliteConnection.close()
+        print("sqlite connection is closed")
+"""
