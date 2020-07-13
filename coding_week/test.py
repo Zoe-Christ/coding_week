@@ -2,4 +2,4 @@
 
 cam = raspCam()
 
-cam.takePicture()
+print (cam.recognize())

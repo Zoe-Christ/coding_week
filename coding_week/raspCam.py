@@ -17,7 +17,8 @@ class raspCam:
     def recognize ():
         camera.takePicture()
 
-        pic = '/home/pi/Desktop/unknownPerson.jpg' #ggf. Anführungszeichen statt Apostrophe
+        #pic = '/home/pi/Desktop/unknownPerson.jpg' #ggf. Anführungszeichen statt Apostrophe
+        pic = "Zoe.jpeg"
         unknown_image = face_recognition.load_image_file(pic)
         unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
         known_faces = datenbank.ausgeben()
@@ -26,7 +27,7 @@ class raspCam:
         print(results)
 
         #Bild von Raspbery löschen
-        os.remove('/home/pi/Desktop/unknownPerson.jpg')
+        #os.remove('/home/pi/Desktop/unknownPerson.jpg')
 
         #Namen zurückgeben
         index = results.index(True)
