@@ -7,7 +7,7 @@ import face_recognition
 #datenbank.delete(3)
 
 #Datensatz einfügen
-#datenbank.insert((datenbank.givemaxID()+1), "ZoeS.jpeg")
+datenbank.insert((datenbank.givemaxID()+1), "ToniS.jpeg")
 #datenbank.insert(1, "Jonah_mB.jpeg")
 
 #Datensätze ausgeben
