@@ -136,7 +136,7 @@ def giveName():
 
 def delete():
     db=sqlite3.connect('SQLite_Python.db')
-    qry="DELETE from FaceImages where foto_id=10;"
+    qry="DELETE from FaceImages where foto_id=11;"
     try:
         cur=db.cursor()
         

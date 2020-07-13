@@ -2,11 +2,12 @@ import datenbank
 import face_recognition
 
 
+#datenbank.delete()
 #Datensatz löschen:
 #datenbank.delete(3)
 
 #Datensatz einfügen
-datenbank.insert((datenbank.givemaxID()+1), "Zoe_sad.jpg")
+#datenbank.insert((datenbank.givemaxID()+1), "Zoe_sad.jpg")
 #datenbank.insert(1, "Jonah_mB.jpeg")
 
 #Datensätze ausgeben

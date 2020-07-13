@@ -25,9 +25,6 @@
     <Compile Include="Ausgabe.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Ausgabe2.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="coding_week.py" />
     <Compile Include="datenbank.py">
       <SubType>Code</SubType>
