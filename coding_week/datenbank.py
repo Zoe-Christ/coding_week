@@ -134,13 +134,13 @@ def giveName():
 # Datensatz löschen
 
 
-def delete():
+def delete(id):
     db=sqlite3.connect('SQLite_Python.db')
-    qry="DELETE from FaceImages where foto_id=11;"
+    qry="DELETE from FaceImages where foto_id=?;"
     try:
         cur=db.cursor()
         
-        cur.execute(qry)
+        cur.execute(qry, (id, ))
         db.commit()
         print("record deleted successfully")
     except:

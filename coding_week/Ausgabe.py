@@ -2,7 +2,7 @@ import datenbank
 import face_recognition
 
 
-#datenbank.delete()
+
 #Datensatz löschen:
 #datenbank.delete(3)
 
