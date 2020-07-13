@@ -30,9 +30,8 @@ class raspCam:
         #os.remove('/home/pi/Desktop/unknownPerson.jpg')
 
         #Namen zurückgeben
-        index = results.index(True)
-        if(index != null):
-            return face_names[index]
-        else:
-            return "I'm sorry, I don't know you yet. It's a pleasure to meet you though! Hi, I'm CowIT 18 :)"
-       
+        try:
+           index = results.index(True)
+           return face_names[index]
+        except ValueError:
+           return "I'm sorry, I don't know you yet. It's a pleasure to meet you though! Hi, I'm CowIT 18 :)"
