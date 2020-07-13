@@ -7,7 +7,6 @@ import face_recognition
 
 #Datensatz einfügen
 
-
 #datenbank.insert((datenbank.givemaxID()+1), "basti_1.jpg")
 
 #Datensätze ausgeben
@@ -21,6 +20,8 @@ results = face_recognition.compare_faces(known_faces, unknown_face_encoding)
 print(results)
 
 """
+
+#datenbank.deleteTable()
 
 
 

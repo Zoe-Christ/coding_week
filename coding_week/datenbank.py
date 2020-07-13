@@ -63,10 +63,10 @@ def insert(id, fileName):
         img.save(byteIO, format='PNG')
     byteArr = byteIO.getvalue()
     db=sqlite3.connect('SQLite_Python.db')
-    qry="""insert into FaceImages (foto_id, byteArr) values(?, ?);"""
+    qry="""insert into FaceImages (foto_id, byteArr, name) values(?, ?, ?);"""
     try:
         cur=db.cursor()
-        recordTuple = (id, byteArr)
+        recordTuple = (id, byteArr, fileName)
         cur.execute(qry, recordTuple)
         db.commit()
         print ("one record added successfully")
@@ -116,7 +116,20 @@ def givemaxID():
     db.close()
     return maxID
 
-  
+# Namen ausgeben 
+def giveName():
+    db=sqlite3.connect('SQLite_Python.db')
+    qry="SELECT * FROM FaceImages;"
+    cur = db.cursor()
+    cur.execute(qry)
+    names = []
+    while True:
+        record = cur.fetchone()
+        if record==None:
+            break
+        names.append(record[2])
+    db.close
+    return names
 
 # Datensatz löschen
 
@@ -142,7 +155,7 @@ try:
     sqliteConnection = sqlite3.connect('SQLite_Python.db')
     sqlite_create_table_query = '''CREATE TABLE FaceImages (
                                     foto_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                                    byteArr BLOB);'''
+                                    byteArr BLOB, name TEXT);'''
 
     cursor = sqliteConnection.cursor()
     print("Successfully Connected to SQLite")
@@ -159,3 +172,11 @@ finally:
         sqliteConnection.close()
         print("sqlite connection is closed")
 """
+
+def deleteTable():
+    sqliteConnection = sqlite3.connect('SQLite_Python.db')
+    cursor = sqliteConnection.cursor()
+    dropTableStatement = "DROP TABLE FaceImages"
+    cursor.execute(dropTableStatement)
+    sqliteConnection.close()
+
