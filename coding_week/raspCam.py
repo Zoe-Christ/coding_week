@@ -1,21 +1,24 @@
+from picamera import PiCamera
+from time import sleep
+import datenbank
+import face_recognition
+import os
+
 class raspCam:
     """description of class"""
-    from picamera import PiCamera
-    from time import sleep
-    import datenbank
-    import face_recognition
-    import os
+    
 
     def __init__(self): 
-        camera = PiCamera()
-        camera.start_preview
+        self.camera = PiCamera()
+        self.camera.start_preview()
 
     def takePicture ():
         sleep(5)
-        camera.capture('/home/pi/Desktop/unknownPerson.jpg')
+        self.camera.capture('/home/pi/Desktop/unknownPerson.jpg')
+        self.camera.stop_preview()
 
     def recognize ():
-        camera.takePicture()
+        self.takePicture()
 
         #pic = '/home/pi/Desktop/unknownPerson.jpg' #ggf. Anführungszeichen statt Apostrophe
         pic = "Zoe.jpeg"

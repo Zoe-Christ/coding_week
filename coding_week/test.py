@@ -1,4 +1,4 @@
-﻿import raspCam
+from raspCam import raspCam
 
 cam = raspCam()
 
