@@ -24,16 +24,19 @@ class raspCam:
         #pic = "Zoe.jpeg"
         unknown_image = face_recognition.load_image_file(pic)
         unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
-        known_faces = datenbank.ausgeben()
+        faces = datenbank.ausgeben()
+        known_faces = []
+        for i in range(len(faces)):
+            known_faces[i] = face_recognition.face_encodings(faces[i])[0]
         face_names = datenbank.giveName()
-        face_pics = datenbank.bilderAusgeben()
+        #face_pics = datenbank.bilderAusgeben()
         results = face_recognition.compare_faces(known_faces, unknown_face_encoding)
         print(results)
 
         #Namen zurückgeben
         try:
             index = results.index(True)
-            face = person(face_names[index], face_pics[index])
+            face = person(face_names[index], faces[index])
             return face
         except ValueError:
             return "I'm sorry, I don't know you yet. It's really nice to meet you though! Hi, I'm CowIt18 :)"
