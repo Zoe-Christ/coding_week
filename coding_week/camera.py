@@ -27,7 +27,7 @@ class raspCam:
         faces = datenbank.ausgeben()
         known_faces = []
         for i in range(len(faces)):
-            known_faces[i] = face_recognition.face_encodings(faces[i])[0]
+            known_faces.append(face_recognition.face_encodings(faces[i])[0])
         face_names = datenbank.giveName()
         #face_pics = datenbank.bilderAusgeben()
         results = face_recognition.compare_faces(known_faces, unknown_face_encoding)
