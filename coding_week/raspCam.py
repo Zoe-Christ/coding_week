@@ -19,7 +19,7 @@ class raspCam:
             self.camera.close()
         
 
-    def recognize ():
+    #def recognize ():
         #sleep(5)
         #self.camera.capture('/home/pi/Desktop/unknownPerson.jpeg')
         #self.camera.stop_preview()
@@ -38,7 +38,7 @@ class raspCam:
 
         #Namen zurückgeben
         #try:
-           #index = results.index(True)
-           #return face_names[index]
+        #index = results.index(True)
+        #return face_names[index]
         #except ValueError:
-           #return "I'm sorry, I don't know you yet. It's a pleasure to meet you though! Hi, I'm CowIT 18 :)"
+        
