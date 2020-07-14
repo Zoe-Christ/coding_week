@@ -1,6 +1,6 @@
 import face_recognition
 
-derulo_image = face_recognition.load_image_file("/Users/mauricegeisen/Documents/coding_week/coding_week/ZoeH.jpeg")
+derulo_image = face_recognition.load_image_file("/Users/mauricegeisen/Documents/coding_week/coding_week/trump_1.jpg")
 
 try:
     derulo_face_encoding = face_recognition.face_encodings(derulo_image)[0]
