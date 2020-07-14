@@ -3,6 +3,7 @@ from time import sleep
 import datenbank
 import face_recognition
 import os
+from person import person
 
 class raspCam:
     """description of class"""
@@ -38,11 +39,11 @@ class raspCam:
             return "I'm sorry, I don't know you yet. It's really nice to meet you though! Hi, I'm CowIt18 :)"
 
     def sadOrHappy(self, face):
-        standard = fr.load_image_file(face.pic)
-        landmarks = fr.face_landmarks(standard)
+        standard = face_recognition.load_image_file(face.pic)
+        landmarks = face_recognition.face_landmarks(standard)
 
-        flex = fr.load_image_file("/home/pi/Desktop/unknownPerson.jpeg")
-        lm1 = fr.face_landmarks(flex)
+        flex = face_recognition.load_image_file("/home/pi/Desktop/unknownPerson.jpeg")
+        lm1 = face_recognition.face_landmarks(flex)
 
         xs1 = []
         ys1 = []

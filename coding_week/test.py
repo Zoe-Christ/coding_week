@@ -1,5 +1,6 @@
 from raspCam import raspCam
 from camera import *
+from person import person
 
 cam = raspCam()
 #print(cam.recognize())
