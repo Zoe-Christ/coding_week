@@ -39,8 +39,8 @@ class raspCam:
             return "I'm sorry, I don't know you yet. It's really nice to meet you though! Hi, I'm CowIt18 :)"
 
     def sadOrHappy(self, face):
-        standard = face_recognition.load_image_file(face.pic)
-        landmarks = face_recognition.face_landmarks(standard)
+        #standard = face_recognition.load_image_file(face.pic)
+        landmarks = face_recognition.face_landmarks(face.pic)
 
         flex = face_recognition.load_image_file("/home/pi/Desktop/unknownPerson.jpeg")
         lm1 = face_recognition.face_landmarks(flex)
@@ -68,9 +68,9 @@ class raspCam:
         print("Variable:", varWert)
 
         if varWert>durchschnitt:
-            print("lächelt")
+            return "lächelt"
         else:
-            print("ist traurig")
+            return "ist traurig"
 
     def deletePic(self):
         #Bild von Raspbery löschen
