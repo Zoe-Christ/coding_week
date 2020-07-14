@@ -18,22 +18,22 @@ class raspCam:
             self.camera.stop_preview()
             self.camera.close()
         
-def recognize ():
-    pic = '/home/pi/Desktop/unknownPerson.jpg' #ggf. Anführungszeichen statt Apostrophe
-    #pic = "Zoe.jpeg"
-    unknown_image = face_recognition.load_image_file(pic)
-    unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
-    known_faces = datenbank.ausgeben()
-    face_names = datenbank.giveName()
-    results = face_recognition.compare_faces(known_faces, unknown_face_encoding)
-    print(results)
+    def recognize(self):
+        pic = '/home/pi/Desktop/unknownPerson.jpeg' #ggf. Anführungszeichen statt Apostrophe
+        #pic = "Zoe.jpeg"
+        unknown_image = face_recognition.load_image_file(pic)
+        unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
+        known_faces = datenbank.ausgeben()
+        face_names = datenbank.giveName()
+        results = face_recognition.compare_faces(known_faces, unknown_face_encoding)
+        print(results)
 
-    #Bild von Raspbery löschen
-    os.remove('/home/pi/Desktop/unknownPerson.jpg')
+        #Bild von Raspbery löschen
+        os.remove('/home/pi/Desktop/unknownPerson.jpeg')
 
-    #Namen zurückgeben
-    try:
-        index = results.index(True)
-        return face_names[index]
-    except ValueError:
-        return "I'm sorry, I don't know you yet. It's really nice to meet you though! Hi, I'm CowIt18 :)"
+        #Namen zurückgeben
+        try:
+            index = results.index(True)
+            return face_names[index]
+        except ValueError:
+            return "I'm sorry, I don't know you yet. It's really nice to meet you though! Hi, I'm CowIt18 :)"
