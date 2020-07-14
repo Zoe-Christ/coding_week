@@ -131,6 +131,25 @@ def giveName():
     db.close
     return names
 
+
+def bilderAusgeben():
+    import io
+    from io import BytesIO
+    from PIL import Image
+    db=sqlite3.connect('SQLite_Python.db')
+    sql="SELECT * from FaceImages;"
+    cur=db.cursor()
+    cur.execute(sql)
+    known_pics = []
+    while True:
+        record=cur.fetchone()
+        if record==None:
+            break
+        img2 = face_recognition.load_image_file(io.BytesIO(record[1]))
+        known_pics.append(img2)
+    db.close()
+    return known_pics
+
 # Datensatz löschen
 
 
