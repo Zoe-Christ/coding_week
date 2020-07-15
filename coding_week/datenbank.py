@@ -1,5 +1,6 @@
 import sqlite3
 import face_recognition
+from person import person
 
 # Datenbank erstellen
 
@@ -93,9 +94,8 @@ def ausgeben():
         if record==None:
             break
         img2 = face_recognition.load_image_file(io.BytesIO(record[1]))
-        #uf = face_recognition.face_encodings(img2)[0]
-        #known_faces.append(uf)
-        known_faces.append(img2)
+        name = record[2]
+        known_faces.append(person (name, img2))
     db.close()
     return known_faces
 

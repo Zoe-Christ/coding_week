@@ -18,25 +18,25 @@ class raspCam:
         finally:
             self.camera.stop_preview()
             self.camera.close()
+            self.pics = datenbank.ausgeben()
+            
         
     def recognize(self):
         pic = '/home/pi/Desktop/unknownPerson.jpeg' #ggf. Anführungszeichen statt Apostrophe
         #pic = "Zoe.jpeg"
         unknown_image = face_recognition.load_image_file(pic)
         unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
-        faces = datenbank.ausgeben()
+        names = []
         known_faces = []
-        for i in range(len(faces)):
-            known_faces.append(face_recognition.face_encodings(faces[i])[0])
-        face_names = datenbank.giveName()
-        #face_pics = datenbank.bilderAusgeben()
+        for i in range(len(pics)):
+            known_faces.append(face_recognition.face_encodings(pics[i].pic)[0])
         results = face_recognition.compare_faces(known_faces, unknown_face_encoding)
         print(results)
 
         #Namen zurückgeben
         try:
             index = results.index(True)
-            face = person(face_names[index], faces[index])
+            face = person(pics[index].name, pics[index].pic)
             return face
         except ValueError:
             return "I'm sorry, I don't know you yet. It's really nice to meet you though! Hi, I'm CowIt18 :)"
