@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>3ce16635-901f-4c25-9443-32feb2866049</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>coding_week.py</StartupFile>
+    <StartupFile>CowitApp.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -12,6 +12,7 @@
     <Name>coding_week</Name>
     <RootNamespace>coding_week</RootNamespace>
     <TestFramework>Pytest</TestFramework>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,6 +29,7 @@
     <Compile Include="camera.py" />
     <Compile Include="coding_week.py" />
     <Compile Include="coords.py" />
+    <Compile Include="CowitApp.py" />
     <Compile Include="datenbank.py">
       <SubType>Code</SubType>
     </Compile>
@@ -54,6 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MyPackage\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="cowit.kv" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

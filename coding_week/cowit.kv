@@ -1,19 +1,22 @@
 #:kivy 1.11.1
 
-<FaceRecognition>:    
-    canvas:
-        Rectangle:
-            pos: self.center_x - 5, 0
-            size: 10, self.height
-            
-    Label:
-        font_size: 70  
-        center_x: root.width / 4
-        top: root.top - 50
-        text: "0"
+<FaceRecognition>:            
+    Button:
+        font_size: 25  
+        center_x: root.width * 3 / 5
+        center_y: root.height / 2
+        text: "Recognize me!"
+        size: self.texture_size
+        padding_x: 5
+        padding_y: 5
         
     Label:
         font_size: 70  
         center_x: root.width * 3 / 4
         top: root.top - 50
-        text: "0"
+        text: "CoWIT-18"
+
+    Camera:
+        id: camera
+        play: True
+        center_x: root.width / 4
