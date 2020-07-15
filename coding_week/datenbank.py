@@ -67,7 +67,8 @@ def insert(id, fileName):
     qry="""insert into FaceImages (foto_id, byteArr, name) values(?, ?, ?);"""
     try:
         cur=db.cursor()
-        recordTuple = (id, byteArr, fileName)
+        x = fileName.split("_")
+        recordTuple = (id, byteArr, x[0])
         cur.execute(qry, recordTuple)
         db.commit()
         print ("one record added successfully")
