@@ -28,15 +28,15 @@ class raspCam:
         unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
         names = []
         known_faces = []
-        for i in range(len(pics)):
-            known_faces.append(face_recognition.face_encodings(pics[i].pic)[0])
+        for i in range(len(self.pics)):
+            known_faces.append(face_recognition.face_encodings(self.pics[i].pic)[0])
         results = face_recognition.compare_faces(known_faces, unknown_face_encoding)
         print(results)
 
         #Namen zurückgeben
         try:
             index = results.index(True)
-            face = person(pics[index].name, pics[index].pic)
+            face = person(self.pics[index].name, self.pics[index].pic)
             return face
         except ValueError:
             return "I'm sorry, I don't know you yet. It's really nice to meet you though! Hi, I'm CowIt18 :)"
