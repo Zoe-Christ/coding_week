@@ -1,7 +1,7 @@
 from raspCam import raspCam
 from camera import *
 from person import person
-import sqlite3
+#import sqlite3
 #import datenbank  #delete
 #import face_recognition
 
