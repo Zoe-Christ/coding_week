@@ -9,6 +9,7 @@
         size: self.texture_size
         padding_x: 5
         padding_y: 5
+        on_press: root.capture()
         
     Label:
         font_size: 70  
@@ -20,3 +21,4 @@
         id: camera
         play: True
         center_x: root.width / 4
+        center_y: root.height / 2
