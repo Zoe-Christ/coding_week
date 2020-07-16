@@ -27,35 +27,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="camera.py" />
-    <Compile Include="coding_week.py" />
     <Compile Include="coords.py" />
     <Compile Include="CowitApp.py" />
     <Compile Include="datenbank.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FaceCompare.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="faceTest.py" />
-    <Compile Include="MyPackage\functions.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MyPackage\greet.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MyPackage\__init__.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="person.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="raspCam.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="test.py" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="MyPackage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="cowit.kv" />
