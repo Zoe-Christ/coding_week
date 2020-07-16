@@ -11,16 +11,15 @@ class raspCam:
 
     def __init__(self): 
         self.camera = PiCamera()
+        self.pics = datenbank.ausgeben()
+            
+    def takePicture(self):
         try:
-            self.camera.start_preview()
             sleep(5)
             self.camera.capture('/home/pi/Desktop/unknownPerson.jpeg')
         finally:
-            self.camera.stop_preview()
             self.camera.close()
-            self.pics = datenbank.ausgeben()
-            
-        
+
     def recognize(self):
         img = '/home/pi/Desktop/unknownPerson.jpeg' #ggf. Anführungszeichen statt Apostrophe
         #pic = "Zoe.jpeg"
@@ -129,6 +128,10 @@ class raspCam:
         ##print(lm1)
         ##print(lm2)
 
+    def addPerson(self, name):
+        os.rename('/home/pi/Desktop/unknownPerson.jpeg', '/home/pi/Desktop/'+ name + '_.jpeg')
+        datenbank.insert(datenbank.givemaxID()+1, name + '_.jpeg')
+    
     def deletePic(self):
         #Bild von Raspbery löschen
         os.remove('/home/pi/Desktop/unknownPerson.jpeg')
