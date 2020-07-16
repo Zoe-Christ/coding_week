@@ -75,6 +75,10 @@ class raspCam:
         else:
             return "ist traurig"
 
+    def addPerson(name):
+        os.rename('/home/pi/Desktop/unknownPerson.jpeg', '/home/pi/Desktop/'+ name + '_.jpeg')
+        datenbank.insert(datenbank.givemaxID()+1, name + '_.jpeg')
+    
     def deletePic(self):
         #Bild von Raspbery löschen
         os.remove('/home/pi/Desktop/unknownPerson.jpeg')
