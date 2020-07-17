@@ -9,22 +9,32 @@ class raspCam:
     """description of class"""
     
 
-    def __init__(self): 
-        self.camera = PiCamera()
+    def __init__(self, camer): 
+        self.camera = camer
         self.pics = datenbank.ausgeben()
             
     def takePicture(self):
         try:
+            print("pic")
             sleep(5)
             self.camera.capture('/home/pi/Desktop/unknownPerson.jpeg')
+            print("picDone")
+            
         finally:
-            self.camera.close()
+            self.camera.stop_preview()
 
     def recognize(self):
+        self.takePicture()
         img = '/home/pi/Desktop/unknownPerson.jpeg' #ggf. Anführungszeichen statt Apostrophe
         #pic = "Zoe.jpeg"
+        print("start loading")
         unknown_image = face_recognition.load_image_file(img)
-        unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
+        print("startEncoding")
+        try:
+            unknown_face_encoding = face_recognition.face_encodings(unknown_image)[0]
+        except IndexError:
+            return "Kein Gesicht erkannt!"
+        print("doneEncoding")
         names = []
         known_faces = []
         for i in range(len(self.pics)):
@@ -36,15 +46,16 @@ class raspCam:
         try:
             index = results.index(True)
             face = person(self.pics[index].name, self.pics[index].pic)
-            return face
+            return self.sadOrHappy(face)
         except ValueError:
             return "I'm sorry, I don't know you yet. It's really nice to meet you though! Hi, I'm CowIt18 :)"
 
     def sadOrHappy(self, face):
         #Vergleichsbild von DB laden und anschließend Landmarks setzen
         #standard = face_recognition.load_image_file(face.pic)
+        print("sadorhappy")
         lm1 = face_recognition.face_landmarks(face.pic)
-
+        
         #Aufgenommenes Bild von Raspberry Pi laden und anschließend Landmarks setzen
         flex = face_recognition.load_image_file("/home/pi/Desktop/unknownPerson.jpeg")
         lm2 = face_recognition.face_landmarks(flex)
@@ -117,11 +128,14 @@ class raspCam:
 
         #Testausgabe von Breitenverhältnissen, um auf die Emotion zu schließen
         if verhaeltRasp > verhaeltDB:
-            print("Lächelt, da Raspberry(",verhaeltRasp,") größer als Datenbank(",verhaeltDB,") ist.")
+            print("l")
+            return "Lächelt"
         elif verhaeltRasp == verhaeltDB:
-            print("Neutral, da Raspberry(",verhaeltRasp,") gleich Datenbank(",verhaeltDB,") ist.") 
+            print("n")
+            return "Neutral"
         else:
-            print("Traurig, da Raspberry(",verhaeltRasp,") kleiner als Datenbank(",verhaeltDB,") ist.")       
+            print("t")
+            return "Traurig"    
         #Testausgabe von Landmarks und bestimmten Mundkoordinaten
         ##print(xs1[48], xs1[54])
         ##print(xs2[48], xs2[54])
@@ -129,8 +143,12 @@ class raspCam:
         ##print(lm2)
 
     def addPerson(self, name):
-        os.rename('/home/pi/Desktop/unknownPerson.jpeg', '/home/pi/Desktop/'+ name + '_.jpeg')
-        datenbank.insert(datenbank.givemaxID()+1, name + '_.jpeg')
+        try:
+            os.rename('/home/pi/Desktop/unknownPerson.jpeg', '/home/pi/Desktop/'+ name + '_.jpeg')
+            datenbank.insert(datenbank.givemaxID()+1, name + '_.jpeg')
+            return "Success!"
+        except:
+            return "Failed!"
     
     def deletePic(self):
         #Bild von Raspbery löschen
