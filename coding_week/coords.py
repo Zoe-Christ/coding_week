@@ -125,7 +125,7 @@ else:
 
 #Testausgabe von Mundverhältnissen, um auf ein Lachen zu schließen
 if verhaeltBRasp > verhaeltBDB and verhaeltLachRasp > verhaeltLachDB:
-    print("Lächelt mit Mund offen, da Raspberry(",verhaeltLachRasp,") größer als Datenbank(",verhaeltLachDB,") ist.")
+    print("Lacht mit Mund offen, da Raspberry(",verhaeltLachRasp,") größer als Datenbank(",verhaeltLachDB,") ist.")
 else:
     print("Lacht nicht mit Mund offen, da Raspberry(",verhaeltLachRasp,") kleiner als Datenbank(",verhaeltLachDB,") ist.")
 
