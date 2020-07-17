@@ -43,7 +43,7 @@ class CowitApp(App):
         
         
         self.rec = FaceRecognition()
-        self.camera = Camera(play= True,resolution= (800,800), size= (800,800))
+        self.camera = Camera(play= True,resolution= (640,960), size= (160,240))
         self.camOwn = raspCam(self.camera._proxy_ref._camera._camera)
         screen = Screen(name="Rec")
         self.rec.add_widget(self.camera)
