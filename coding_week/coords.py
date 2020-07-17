@@ -127,7 +127,7 @@ else:
 if verhaeltBRasp > verhaeltBDB and verhaeltLachRasp > verhaeltLachDB:
     print("Lächelt mit Mund offen, da Raspberry(",verhaeltLachRasp,") größer als Datenbank(",verhaeltLachDB,") ist.")
 else:
-    print("Traurig, da Raspberry(",verhaeltLachRasp,") kleiner als Datenbank(",verhaeltLachDB,") ist.")
+    print("Lacht nicht mit Mund offen, da Raspberry(",verhaeltLachRasp,") kleiner als Datenbank(",verhaeltLachDB,") ist.")
 
 ###Testausgabe von Landmarks und bestimmten Mundkoordinaten
 ##print(xs1[48], xs1[54])
