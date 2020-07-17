@@ -1,15 +1,14 @@
-from raspCam import raspCam
+
 from camera import *
 from person import person
 #import sqlite3
 #import datenbank  #delete
 #import face_recognition
 
-cam = raspCam()
+cam = raspCam(PiCamera())
 #print(cam.recognize())
 s = cam.recognize()
-t = cam.sadOrHappy(s)
-print(s.name, t)
+print(s)
 cam.deletePic()
 
 #delete below
