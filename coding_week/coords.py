@@ -35,17 +35,41 @@ statDB = xs1[16] - xs1[0]
 #Statische Werte Kopfbreite auf Augenhöhe bei Raspberry-Bild
 statRasp = xs2[16] - xs2[0]
 
+#Statische Werte Kopfhöhe auf Augenhöhe bei Vergleichsbild aus Datenbank
+stathDB = ys1[1] - ys1[0]
+
+#Statische Werte Kopfhöhe auf Augenhöhe bei Raspberry-Bild
+stathRasp = ys2[1] - ys2[0]
+
+#Statische Werte von Kinn bis Augen bei Vergleichsbild
+##statKMdb = ys1[8] - ys1[27]
+
+#Statische Werte von Kinn bis Augen bei Raspberry-Bild
+##statKMRasp = ys2[8] - ys2[27]
+
 #Ermittlung der Breite des Mundes im Vergleichsbilds
 breiteDB    = xs1[54]-xs1[48]
 
 #Ermittlung der Breite des Mundes im Raspberry-Bilds
-breiteRasp        = xs2[54]-xs2[48]
+breiteRasp  = xs2[54]-xs2[48]
 
 #Ermittlung der Höhe des Mundes im Vergleichsbilds
-hoeheDB = ys1[54]- ys1[48]
+hoeheDB = ys1[57] - ys1[48]
 
 #Ermittlung der Höhe des Mundes im Raspberry-Bilds
-hoeheRasp = ys2[54] -ys2[48]
+hoeheRasp = ys2[57] - ys2[48]
+
+#Ermittlung der Höhe, ob Mund geöffnet ist im Vergleichsbild
+lachenDB = ys1[62] - ys1[66] 
+
+#Ermittlung der Höhe, ob Mund geöffnet ist im Raspberry-Bild
+lachenRasp = ys2[62] - ys2[66] 
+
+#Ermittlung der Höhe von Kinn bis Mund im Vergleichsbild
+    #
+
+#Ermittlung der Höhe von Kinn bis Mund im Raspberry-Bild
+    #
 
 #Testausgabe der Werte der Kopfbreite
 ##print("Kopbreite-DB:",statDB,"Kopfbreite-Rasp:",statRasp)
@@ -72,19 +96,43 @@ hoeheRasp = ys2[54] -ys2[48]
 ##    print("Normal")    
 
 #Verhältnis Kopfbreite zu Mundbreite
-verhaeltDB      = breiteDB / statDB         #Datenbank-Bild (Vergleichsbild)
-verhaeltRasp    = breiteRasp / statRasp     #Raspberry-Bild
+verhaeltBDB      = breiteDB / statDB         #Datenbank-Bild (Vergleichsbild)
+verhaeltBRasp    = breiteRasp / statRasp     #Raspberry-Bild
+
+#Verhältnis Kopfhöhe zu Mundhöhe
+verhaeltHDB     = hoeheDB / stathDB
+verhaeltHRasp   = hoeheRasp / stathRasp
+
+#Verhältnis Mundhöhe (Lippen) zu Kopfhöhe
+verhaeltLachDB      = lachenDB / stathDB
+verhaeltLachRasp    = lachenRasp / stathRasp
 
 #Testausgabe von Breitenverhältnissen, um auf die Emotion zu schließen
-if verhaeltRasp > verhaeltDB:
-    print("Lächelt, da Raspberry(",verhaeltRasp,") größer als Datenbank(",verhaeltDB,") ist.")
-elif verhaeltRasp == verhaeltDB:
-    print("Neutral, da Raspberry(",verhaeltRasp,") gleich Datenbank(",verhaeltDB,") ist.") 
+if verhaeltBRasp > verhaeltBDB:
+    print("Lächelt, da Raspberry(",verhaeltBRasp,") größer als Datenbank(",verhaeltBDB,") ist.")
+elif verhaeltBRasp == verhaeltBDB:
+    print("Neutral, da Raspberry(",verhaeltBRasp,") gleich Datenbank(",verhaeltBDB,") ist.") 
 else:
-    print("Traurig, da Raspberry(",verhaeltRasp,") kleiner als Datenbank(",verhaeltDB,") ist.")       
-#Testausgabe von Landmarks und bestimmten Mundkoordinaten
+    print("Traurig, da Raspberry(",verhaeltBRasp,") kleiner als Datenbank(",verhaeltBDB,") ist.")
+
+#Testausgabe von Höhenverhältnissen, um auf die Emotion zu schließen
+#if verhaeltHRasp > verhaeltHDB:
+#   print("Lächelt, da Raspberry(",verhaeltHRasp,") größer als Datenbank(",verhaeltHDB,") ist.")
+#elif verhaeltHRasp == verhaeltHDB:
+#    print("Neutral, da Raspberry(",verhaeltHRasp,") gleich Datenbank(",verhaeltHDB,") ist.") 
+#else:
+#    print("Traurig, da Raspberry(",verhaeltHRasp,") kleiner als Datenbank(",verhaeltHDB,") ist.")
+
+#Testausgabe von Mundverhältnissen, um auf ein Lachen zu schließen
+if verhaeltBRasp > verhaeltBDB and verhaeltLachRasp > verhaeltLachDB:
+    print("Lächelt mit Mund offen, da Raspberry(",verhaeltLachRasp,") größer als Datenbank(",verhaeltLachDB,") ist.")
+else:
+    print("Traurig, da Raspberry(",verhaeltLachRasp,") kleiner als Datenbank(",verhaeltLachDB,") ist.")
+
+###Testausgabe von Landmarks und bestimmten Mundkoordinaten
 ##print(xs1[48], xs1[54])
 ##print(xs2[48], xs2[54])
 ##print(lm1)
 ##print(lm2)
+##print(xs1[27], xs1[30], ys1[27], ys1[30], ys1[48], ys1[54])
     
