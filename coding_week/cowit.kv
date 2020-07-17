@@ -1,45 +1,60 @@
 #:kivy 1.11.1
-
-<FaceRecognition>:            
-    Button:
-        font_size: 25  
-        center_x: root.width * 3 / 5
-        center_y: root.height / 2
-        text: "Recognize me!"
-        background_color: (0,0.11,0.74,1)
-        size: self.texture_size
-        padding_x: 5
-        padding_y: 5
-        on_press: root.capture()
-    Button:
-        font_size: 25  
-        center_x: root.width * 4 / 5
-        center_y: root.height / 2
-        text: "Add me!"
-        size: self.texture_size
-        background_color: (0,0.11,0.74,1)
-        padding_x: 5
-        padding_y: 5
-        on_press: root.add()
+<FaceRecognition>:
+    cols: 2  
+    rows: 1
+    FaceRecognitionLeft:
+    FaceRecognitionRight:
+<FaceRecognitionLeft@Widget>:
+        Camera:
+            play: True
+            resolution: (640,960) 
+            size: (160,240)
+<FaceRecognitionRight@Widget>:
+        Button:
+            font_size: 25  
+            center_x: 200
+            center_y: 100
+            text: "Recognize me!"
+            background_color: (0,0.11,0.74,1)
+            size: (200,100)
+            padding_x: 5
+            padding_y: 5
+            on_press: root.capture()
+        Button:
+            font_size: 25  
+            center_x: 200
+            center_y: 140
+            text: "Add me!"
+            size: self.texture_size
+            background_color: (0,0.11,0.74,1)
+            padding_x: 5
+            padding_y: 5
+            on_press: root.add()
         
-    Label:
-        font_size: 70  
-        center_x: root.width * 3 / 4
-        top: root.top - 50
-        text: "CoWIT-18"
-        color: (0,0.11,0.74,1)
-    Button:
-        font_size: 25  
-        center_x: root.width * 4 / 5
-        center_y: root.height / 3
-        text: "X"
-        background_color: (1,0,0,1)
-        size: self.texture_size
-        padding_x: 5
-        padding_y: 5                                                                  
-        on_press: root.stop()
-    
-<Result>:            
+        Label:
+            font_size: 70  
+            center_x: 200
+            top: 50
+            text: "CoWIT-18"
+            color: (0,0.11,0.74,1)
+        Button:
+            font_size: 25  
+            center_x: root.width * 4 / 5
+            center_y: root.height / 3
+            text: "X"
+            background_color: (1,0,0,1)
+            size: self.texture_size
+            padding_x: 5
+            padding_y: 5                                                                  
+            on_press: root.stop()
+<Result>:    
+     Label:
+        font_size: 70
+        center_x: self.res.width / 4
+        center_y: 5
+        top= self.res.top - 50
+        text: "Result"
+        color: (0,0.11,0.74,1))
     Button:
         font_size: 25  
         center_x: root.width * 3 / 5
@@ -66,7 +81,14 @@
         padding_x: 5
         padding_y: 5
         on_press: root.stop()
-<Add>:            
+<Add>:     
+    TextInput:
+        multiline: False
+        center_x: self.add.width /2
+        center_y: self.add.height / 3
+        height: 30
+        font_size: 20
+        focus: True
     Button:
         font_size: 25  
         center_x: root.width * 3 / 5
