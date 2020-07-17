@@ -1,4 +1,4 @@
-from picamera import PiCamera
+
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.core.window import Window
@@ -41,24 +41,25 @@ class CowitApp(App):
     def build(self):
         self.manager = ScreenManager()
         
+        
         self.rec = FaceRecognition()
-        self.camera = self.rec.children[0].children[1]
-        print(self.rec.children[0].children)
+        self.camera = Camera(play= True,resolution= (160,960), size= (160,240))
         self.camOwn = raspCam(self.camera._proxy_ref._camera._camera)
         screen = Screen(name="Rec")
+        self.rec.add_widget(self.camera)
         screen.add_widget(self.rec)
         self.manager.add_widget(screen)
         
         self.add = Add()
-        self.input = self.add.children[0]
+        self.input = TextInput(multiline= False,center_x= self.add.width /2,center_y= self.add.height / 3,height= 30,font_size= 20,focus= True)
+        self.add.add_widget(self.input)
         screen = Screen(name="Add")
         screen.add_widget(self.add)
         self.manager.add_widget(screen)
         
         self.res = Result()
-        self.labelResult = self.res.children[0].children[2]
-        print(self.labelResult, self.labelResult.text)
-        print(self.res.children[0].children)
+        self.labelResult = Label(font_size = 70,  center_x=self.res.width / 4, center_y= 5, top= self.res.top - 50, text= "Result", color = (0,0.11,0.74,1))
+        self.res.add_widget(self.labelResult)
         screen = Screen(name="Res")
         screen.add_widget(self.res)
         self.manager.add_widget(screen)
@@ -67,7 +68,6 @@ class CowitApp(App):
 
 if __name__ == '__main__':
     Window.fullscreen = True
-    Window.size=(320,240)
     Window.clearcolor = (0.62,0.82,1,1)
     app = CowitApp()
     app.run()

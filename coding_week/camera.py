@@ -129,13 +129,13 @@ class raspCam:
         #Testausgabe von Breitenverhältnissen, um auf die Emotion zu schließen
         if verhaeltRasp > verhaeltDB:
             print("l")
-            return "Lächelt"
+            return face.name + " smiles :)"
         elif verhaeltRasp == verhaeltDB:
             print("n")
-            return "Neutral"
+            return face.name +" looks neutral!"
         else:
             print("t")
-            return "Traurig"    
+            return face.name + " is sad :/"
         #Testausgabe von Landmarks und bestimmten Mundkoordinaten
         ##print(xs1[48], xs1[54])
         ##print(xs2[48], xs2[54])
